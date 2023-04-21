@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_nav"
+        android:id="@+id/announcement_nav"
         android:title="Announcement"
         android:icon="@drawable/announcement" />
 
     <item
-        android:id="@+id/library_nav"
+        android:id="@+id/assignment_nav"
         android:title="Assignments"
         android:icon="@drawable/assignment" />
     <item
-        android:id="@+id/wishlist_nav"
+        android:id="@+id/notes_nav"
         android:title="Notes"
         android:icon="@drawable/notes" />
     <item
-        android:id="@+id/shop_nav"
+        android:id="@+id/syllabus_nav"
         android:title="Syllabus"
         android:icon="@drawable/syllabus"
         />

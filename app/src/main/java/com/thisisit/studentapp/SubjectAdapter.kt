@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SubjectAdapter(private var list: List<Subjects>): RecyclerView.Adapter<SubjectAdapter.SubjectListHolder>() {
 
+    private var onClickListener: OnClickListener? = null
+
     class SubjectListHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val subjectName: TextView = itemView.findViewById(R.id.subjectName)
         val subjectInstructor: TextView = itemView.findViewById(R.id.subjectInstructor)
@@ -27,5 +29,22 @@ class SubjectAdapter(private var list: List<Subjects>): RecyclerView.Adapter<Sub
 
         holder.subjectName.text = list[position].name
         holder.subjectInstructor.text = list[position].instructor
+
+        //Add an onClickListener to the item.
+        holder.itemView.setOnClickListener {
+            if (onClickListener != null) {
+                onClickListener!!.onClick(position, list[position])
+            }
+        }
+    }
+
+    // A function to bind the onclickListener.
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+
+    // onClickListener Interface
+    interface OnClickListener {
+        fun onClick(position: Int, model: Subjects)
     }
 }

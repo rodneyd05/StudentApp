@@ -1,6 +1,19 @@
 package com.thisisit.studentapp
 
-data class Subjects(val name: String, val instructor: String)
+data class Subjects(val name: String,
+                    val instructor: String,
+//                    val announce: Announcement,
+//                    val assign: Assignment,
+//                    val notes: Notes,
+//                    val syllabus: Syllabus
+                   ) :java.io.Serializable
+
+data class Announcement(val heading: String, val announceContent: String)
+data class Assignment(val heading: String, val assignContent: String)
+data class Notes(val heading: String, val notesContent: String)
+data class Syllabus(val heading: String, val syllabusContent: String)
+
+//values
 
 val subjectList = listOf(
     Subjects("Understanding the Self", "Instructor 1"),

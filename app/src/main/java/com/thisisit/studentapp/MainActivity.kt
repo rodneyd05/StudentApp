@@ -37,6 +37,20 @@ class MainActivity : AppCompatActivity() {
             dialogFragment.isCancelable = false
             dialogFragment.show(fragmentManager, "ChangeProfilePicture")
         }
+
+        subjectListAdapter.setOnClickListener(object: SubjectAdapter.OnClickListener {
+            override fun onClick(position: Int, model: Subjects) {
+                val intent = Intent(this@MainActivity, SubjectActivity::class.java)
+                //pass the data here to SubjectActivity
+                intent.putExtra(NEXT_SCREEN, model)
+                startActivity(intent)
+            }
+
+        })
+    }
+
+    companion object{
+        val NEXT_SCREEN="details_screen"
     }
 
     fun getPermission() {
