@@ -39,7 +39,7 @@
                 android:elevation="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_image"
                 app:layout_constraintEnd_toEndOf="@+id/profile_image"
-                app:srcCompat="@drawable/baseline_camera_alt_24" />
+                app:srcCompat="@drawable/camera" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="40dp"
-                android:text="First"
+                android:text="Meow"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/profile_image"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="40dp"
-                android:text="Last"
+                android:text="Smith"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/firstName"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="Major"
+                android:text="Meowconomics"
                 app:layout_constraintStart_toEndOf="@+id/profile_image"
                 app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
@@ -114,7 +114,7 @@
         android:id="@+id/subjectRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
