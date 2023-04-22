@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisisit.studentapp.databinding.ActivityMainBinding
 import java.io.IOException
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,15 +44,17 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(position: Int, model: Subjects) {
                 val intent = Intent(this@MainActivity, SubjectActivity::class.java)
                 //pass the data here to SubjectActivity
-                intent.putExtra(NEXT_SCREEN, model)
+                intent.putExtra("details", model)
+
+                val bundle = Bundle()
+                val announcementFragment = AnnouncementFragment()
+
+                bundle.putSerializable("content_details", model)
+                announcementFragment.arguments = bundle
+
                 startActivity(intent)
             }
-
         })
-    }
-
-    companion object{
-        val NEXT_SCREEN="details_screen"
     }
 
     fun getPermission() {

@@ -2,6 +2,7 @@ package com.thisisit.studentapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.thisisit.studentapp.databinding.ActivitySubjectBinding
 
@@ -15,9 +16,10 @@ class SubjectActivity : AppCompatActivity() {
         subjectBinding = ActivitySubjectBinding.inflate(layoutInflater)
         setContentView(subjectBinding.root)
 
-        if(intent.hasExtra(MainActivity.NEXT_SCREEN)) {
-            thisSubjectList = intent.getSerializableExtra(MainActivity.NEXT_SCREEN) as Subjects
-        }
+//        if(intent.hasExtra("details")) {
+//            thisSubjectList = intent.getSerializableExtra("details") as Subjects
+//        }
+        thisSubjectList = intent.getSerializableExtra("details") as Subjects
 
         subjectBinding.subjectActivityName.text = thisSubjectList.name
         subjectBinding.subjectActivityInstructor.text = thisSubjectList.instructor

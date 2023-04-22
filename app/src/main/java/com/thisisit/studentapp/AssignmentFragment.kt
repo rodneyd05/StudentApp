@@ -5,55 +5,41 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.thisisit.studentapp.databinding.FragmentAssignmentBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AssignmentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AssignmentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private lateinit var assignmentBinding: FragmentAssignmentBinding
+    private lateinit var announcementList: Subjects
+    private lateinit var announce: Subjects
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+//        announce = arguments?.getSerializable("content_details") as Subjects
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+        //If viewBinding is used, View should be made non-nullable instead of View?
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_assignment, container, false)
+        //return inflater.inflate(R.layout.fragment_your_books, container, false)
+        assignmentBinding = FragmentAssignmentBinding.inflate(layoutInflater)
+        return assignmentBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AssignmentFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AssignmentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    //call and override this function
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //use context instead of (this@AssignmentFragment)
+        assignmentBinding.assignmentRecyclerView.layoutManager = LinearLayoutManager(context)
+
+//        announcementList = arguments?.getSerializable("content_details") as Subjects
+
+        val assignmentAdapter = AnnouncementAdapter(assignment)
+        assignmentBinding.assignmentRecyclerView.adapter = assignmentAdapter
     }
+
 }
