@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SyllabusAdapter(private var list: List<Content>): RecyclerView.Adapter<SyllabusAdapter.SyllabusHolder>() {
+class DetailsAdapter(private var list: List<Content>): RecyclerView.Adapter<DetailsAdapter.AnnouncementHolder>() {
 
-    class SyllabusHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class AnnouncementHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         val heading: TextView = itemView.findViewById(R.id.itemHeading)
         val content: TextView = itemView.findViewById(R.id.itemContent)
@@ -17,14 +17,14 @@ class SyllabusAdapter(private var list: List<Content>): RecyclerView.Adapter<Syl
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SyllabusHolder {
+    ): AnnouncementHolder {
 
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.subject_content_design, parent, false)
 
-        return SyllabusHolder(view)
+        return AnnouncementHolder(view)
     }
 
-    override fun onBindViewHolder(holder: SyllabusHolder, position: Int) {
+    override fun onBindViewHolder(holder: AnnouncementHolder, position: Int) {
         holder.heading.text = list[position].heading
         holder.content.text = list[position].content
     }

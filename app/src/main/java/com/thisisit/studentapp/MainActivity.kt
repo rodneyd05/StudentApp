@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisisit.studentapp.databinding.ActivityMainBinding
 import java.io.IOException
-import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,21 +40,19 @@ class MainActivity : AppCompatActivity() {
 
         subjectListAdapter.setOnClickListener(object: SubjectAdapter.OnClickListener {
             override fun onClick(position: Int, model: Subjects) {
+
                 val intent = Intent(this@MainActivity, SubjectActivity::class.java)
                 //pass the data here to SubjectActivity
-                intent.putExtra("details", model)
-
-                val bundle = Bundle()
-                val announcementFragment = AnnouncementFragment()
-
-                bundle.putSerializable("content_details", model)
-                announcementFragment.arguments = bundle
-
+                intent.putExtra(CONTENT_STRING, model)
                 startActivity(intent)
             }
         })
     }
 
+    companion object {
+        const val CONTENT_STRING = "content_string"
+        const val CONTENT_OBJECT = "content_object"
+    }
     fun getPermission() {
         if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.CAMERA), getPermission)

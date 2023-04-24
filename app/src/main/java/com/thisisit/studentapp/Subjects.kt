@@ -1,18 +1,19 @@
 package com.thisisit.studentapp
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Subjects(val name: String,
                     val instructor: String,
                     val announce: List<Content>,
                     val assign: List<Content>,
                     val notes: List<Content>,
                     val syllabus: List<Content>
-) : Serializable {
+) : Parcelable
 
-}
-
-data class Content(val heading: String, val content: String): Serializable
+@Parcelize
+data class Content(val heading: String, val content: String): Parcelable
 
 //values announcement
 val announcement = listOf(
@@ -67,7 +68,7 @@ val syllabus = listOf(
 )
 
 val subjectList = listOf(
-    Subjects("Understanding the Self", "Instructor 1", announcement, assignment, notes, syllabus),
+    Subjects("Understanding the Self", "Instructor 1", listOf(Content("Understanding Self Announcement", "Understanding Self Content")), assignment, notes, syllabus),
     Subjects("Contemporary World", "Instructor 2", announcement, assignment, notes, syllabus),
     Subjects("Purposive Communication", "Instructor 3", announcement, assignment, notes, syllabus),
     Subjects("Art Appreciation", "Instructor 4", announcement, assignment, notes, syllabus),
@@ -77,5 +78,3 @@ val subjectList = listOf(
     Subjects("Science and Technology, and Society", "Instructor 8", announcement, assignment, notes, syllabus),
     Subjects("Life and Works of Rizal", "Instructor 9", announcement, assignment, notes, syllabus)
 )
-
-// , announcement, assignment, notes, syllabus

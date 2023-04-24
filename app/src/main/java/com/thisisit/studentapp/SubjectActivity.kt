@@ -2,37 +2,32 @@ package com.thisisit.studentapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.thisisit.studentapp.databinding.ActivitySubjectBinding
 
 class SubjectActivity : AppCompatActivity() {
 
     private lateinit var subjectBinding: ActivitySubjectBinding
-    private lateinit var thisSubjectList: Subjects
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         subjectBinding = ActivitySubjectBinding.inflate(layoutInflater)
         setContentView(subjectBinding.root)
 
-//        if(intent.hasExtra("details")) {
-//            thisSubjectList = intent.getSerializableExtra("details") as Subjects
-//        }
-        thisSubjectList = intent.getSerializableExtra("details") as Subjects
+        val thisSubject = intent.getParcelableExtra<Subjects>(MainActivity.CONTENT_STRING)
 
-        subjectBinding.subjectActivityName.text = thisSubjectList.name
-        subjectBinding.subjectActivityInstructor.text = thisSubjectList.instructor
+        subjectBinding.subjectActivityName.text = thisSubject?.name
+        subjectBinding.subjectActivityInstructor.text = thisSubject?.instructor
 
         //initialize frameLayout
-        replaceFragment(AnnouncementFragment())
+        replaceFragment(AnnouncementFragment(), thisSubject!!)
 
         subjectBinding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.announcement_nav -> replaceFragment(AnnouncementFragment())
-                R.id.assignment_nav -> replaceFragment(AssignmentFragment())
-                R.id.notes_nav -> replaceFragment(NotesFragment())
-                R.id.syllabus_nav -> replaceFragment(SyllabusFragment())
+                R.id.announcement_nav -> replaceFragment(AnnouncementFragment(), thisSubject)
+                R.id.assignment_nav -> replaceFragment(AssignmentFragment(), thisSubject)
+                R.id.notes_nav -> replaceFragment(NotesFragment(), thisSubject)
+                R.id.syllabus_nav -> replaceFragment(SyllabusFragment(), thisSubject)
 
                 else -> {
                 }
@@ -41,9 +36,11 @@ class SubjectActivity : AppCompatActivity() {
         }
 
     }
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, data: Subjects) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+        val bundle = Bundle().apply { putParcelable(MainActivity.CONTENT_OBJECT,data) }
+        fragment.arguments = bundle
         fragmentTransaction.replace(R.id.frame_layout,fragment)
         fragmentTransaction.commit()
     }

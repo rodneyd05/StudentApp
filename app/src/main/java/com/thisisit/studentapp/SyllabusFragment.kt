@@ -6,18 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.thisisit.studentapp.databinding.FragmentAnnouncementBinding
 import com.thisisit.studentapp.databinding.FragmentSyllabusBinding
 
 class SyllabusFragment : Fragment() {
     private lateinit var syllabusBinding: FragmentSyllabusBinding
-    private lateinit var announcementList: Subjects
-    private lateinit var announce: Subjects
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//        announce = arguments?.getSerializable("content_details") as Subjects
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +29,12 @@ class SyllabusFragment : Fragment() {
         //use context instead of (this@SyllabusFragment)
         syllabusBinding.syllabusRecyclerView.layoutManager = LinearLayoutManager(context)
 
-//        announcementList = arguments?.getSerializable("content_details") as Subjects
+        val thisSubject = arguments?.getParcelable<Subjects>(MainActivity.CONTENT_OBJECT)
 
-        val syllabusAdapter = SyllabusAdapter(syllabus)
-        syllabusBinding.syllabusRecyclerView.adapter = syllabusAdapter
+        if (thisSubject != null) {
+            val detailsAdapter = DetailsAdapter(thisSubject.syllabus)
+            syllabusBinding.syllabusRecyclerView.adapter = detailsAdapter
+        }
     }
 
 }
